@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	</head>
+	<body>
+		<form name="personForm" method="get" action="http://localhost:8080/testServlet2/PersonServlet">
+		<table border="2" cellpadding="5" cellspacing="0">
+			<tr>
+				<th width="70" align="center">이름</th> <!-- 굴게, 가운데 정렬 --> 
+				<td>
+					<input type="text" name="name" placeholder="이름이 뭐니? 입력해봐">
+				</td>
+			</tr>
+			
+			<tr>
+				<th align="center">성별</th> 
+				<td>
+					<fieldset>
+						<legend>성별</legend>
+						<input type="radio" name="gender" id="gender m" value="0" checked="checked">
+						<!-- for을 쓸때는 id를 써야한다, name X -->
+						<label for="gender m">남자</label>
+						&nbsp; <!-- 간격띄움 -->
+						<input type="radio" name="gender" id="gender w" value="1">
+						<label for="gender w">여자</label>
+					</fieldset>
+				</td>
+			</tr>
+			
+			<tr>
+				<th align="center">색깔</th> 
+				<td>
+					<select name="color" style="width:100px;">
+						<optgroup label="색깔골라봐~">
+							<option value="red">빨강</option>
+							<option value="green">초록</option>
+							<option value="blue">파랑</option>
+							<option value="magenta">보라</option>
+							<option value="cyan">하늘</option>
+						</optgroup>
+					</select>
+				</td>
+			</tr>
+			
+			<tr>
+				<th align="center">취미</th> 
+				<td>
+					<input type="checkbox" name="hobby" id="hobby_1" value="독서">
+					<label for="hobby_1">독서</label>
+					<input type="checkbox" name="hobby" id="hobby_2" value="영화">
+					<label for="hobby_2">영화</label>
+					<input type="checkbox" name="hobby" id="hobby_3" value="음악">
+					<label for="hobby_3">음악</label>
+					<input type="checkbox" name="hobby" id="hobby_4" value="게임">
+					<label for="hobby_4">게임</label>
+					<input type="checkbox" name="hobby" id="hobby_5" value="쇼핑">
+					<label for="hobby_5">쇼핑</label>
+				</td>
+			</tr>
+			
+			<tr>
+				<th align="center">과목</th> 
+				<td>
+					<select size="5" name="subject" style="width:100px;" multiple="multiple">
+						<option value="JAVA" selected="selected">JAVA</option>
+						<option value="Servlet">Servlet</option>
+						<option value="JSP">JSP</option>
+						<option value="Spring">Spring</option>
+					</select>
+				</td>
+			</tr>
+			
+			<tr>
+				<td colspan="2" align="center">
+					<input type="button" value="SEND" onclick="check()"> <!-- "javaScript:"생략가능 -->
+					<input type="reset" value="CANCEL">
+				</td> 
+		   </tr>
+		</table>
+		</form>
+		<script type="text/javascript">
+		function check(){
+			<!-- 현재문서.폼이름.name속성명.value == "" -->
+			if(document.personForm.name.value == ""){
+				alert("이름 입력해라ㅡㅡ");
+				return;
+			}
+			
+			<!-- getElementByName() : name값이 1개 일때 -->
+			
+			var check = document.getElementsByName("hobby");
+			var count = 0;
+			for(i=0; i<check.length; i++){
+				if(check[i].checked) count++
+			}//for
+			
+			if(count == 0){
+				alert("취미를 선택하세연");
+				return;
+			}
+				
+			document.personForm.submit();
+		}
+		</script>
+	</body>
+</html>
