@@ -1,5 +1,6 @@
 function select(){
-	document.writeForm.email2.value = document.writeForm.email3.value;
+	//document.writeForm.email2.value = document.writeForm.email3.value;
+	document.getElementById("email2").value = document.getElementById("email3").value
 }
 
 function checkWrite(){
@@ -22,7 +23,7 @@ function checkWrite(){
 		document.writeForm.submit();
 }
 
-function checkWrited(){
+function checkUpdate(){
 	//if(document.writeForm.name.value == "") alert("이름 입력하세요")
 	//if(document.getElementById("name").value == "") alert("이름 입력하세요")
 	

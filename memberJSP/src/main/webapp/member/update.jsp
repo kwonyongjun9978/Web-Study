@@ -35,7 +35,7 @@
 	
 	//DB
 	MemberDAO memberDAO = MemberDAO.getInstance(); //클래스 생성
-	int su = memberDAO.memberUpdate(memberDTO); //호출
+	memberDAO.memberUpdate(memberDTO); //호출
 %>        
 <!DOCTYPE html>
 <html>
@@ -44,10 +44,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%if(su == 0){ %>
-<h3>업데이트 실패</h3>
-<%}else{ %>
-<h3>업데이트 성공</h3>
-<%} %>
+<h3>회원정보수정 완료!!</h3>
+
+<script type="text/javascript">
+window.onload=function(){
+	alert("회원정보수정 완료!!");
+	location.href="loginForm.jsp";
+}
+</script>
 </body>
 </html>

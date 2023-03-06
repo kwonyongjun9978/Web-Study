@@ -68,38 +68,43 @@ public class MemberDAO {
 		return name;
 	}
 	
-	public int memberUpdate(MemberDTO dto) {
+	public MemberDTO getMember(String id) {
+		System.out.println(id);
+		MemberDTO memberDTO = null;
 		
-		int su=0;
-
 		getConnection(); // 접속
 		
-		String sql = "update member set name=?, pwd=?, gender=?, email1=?, email2=?, tel1=?, tel2=?, tel3=?, zipcode=?, addr1=?, addr2=? where id=?";
+		String sql = "select * from member where id=?";
 		
 		try {
 			pstmt = conn.prepareStatement(sql); //가이드 생성
-			pstmt.setString(1, dto.getName());//?에 데이터 대입
-			pstmt.setString(2, dto.getPwd());
-			pstmt.setString(3, dto.getGender());
-			pstmt.setString(4, dto.getEmail1());
-			pstmt.setString(5, dto.getEmail2());
-			pstmt.setString(6, dto.getTel1());
-			pstmt.setString(7, dto.getTel2());
-			pstmt.setString(8, dto.getTel3());
-			pstmt.setString(9, dto.getZipcode());
-			pstmt.setString(10, dto.getAddr1());
-			pstmt.setString(11, dto.getAddr2());
-			pstmt.setString(12, dto.getId());
-			su = pstmt.executeUpdate();//실행 - 개수 리턴
-			System.out.println(su+"행 이(가) 업데이트 되었습니다.");
+			pstmt.setString(1, id);//?에 데이터 대입
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				memberDTO = new MemberDTO(); //생성
+				memberDTO.setName(rs.getString("name"));
+				memberDTO.setId(rs.getString("id"));
+				memberDTO.setPwd(rs.getString("pwd"));
+				memberDTO.setGender(rs.getString("gender"));
+				memberDTO.setEmail1(rs.getString("email1"));
+				memberDTO.setEmail2(rs.getString("email2"));
+				memberDTO.setTel1(rs.getString("tel1"));
+				memberDTO.setTel2(rs.getString("tel2"));
+				memberDTO.setTel3(rs.getString("tel3"));
+				memberDTO.setZipcode(rs.getString("zipcode"));
+				memberDTO.setAddr1(rs.getString("addr1"));
+				memberDTO.setAddr2(rs.getString("addr2"));
+			}
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			MemberDAO.close(conn, pstmt);
+			MemberDAO.close(conn, pstmt, rs);
 		}
 		
-		return su;
+		System.out.println(memberDTO);
+		return memberDTO;
 	}
 	
 	public int memberWrite(MemberDTO memberDTO) {
@@ -134,6 +139,35 @@ public class MemberDAO {
 		}
 		
 		return su;
+	}
+	
+	public void memberUpdate(MemberDTO memberDTO){
+		String sql = "update member set name=?, pwd=?, gender=?, email1=?, email2=?, tel1=?, tel2=?, tel3=?, zipcode=?, addr1=?, addr2=?, logtime=sysdate where id=?";
+		
+		getConnection();
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			//?에 데이터 주입
+			pstmt.setString(1, memberDTO.getName());
+			pstmt.setString(2, memberDTO.getPwd());
+			pstmt.setString(3, memberDTO.getGender());
+			pstmt.setString(4, memberDTO.getEmail1());
+			pstmt.setString(5, memberDTO.getEmail2());
+			pstmt.setString(6, memberDTO.getTel1());
+			pstmt.setString(7, memberDTO.getTel2());
+			pstmt.setString(8, memberDTO.getTel3());
+			pstmt.setString(9, memberDTO.getZipcode());
+			pstmt.setString(10, memberDTO.getAddr1());
+			pstmt.setString(11, memberDTO.getAddr2());
+			pstmt.setString(12, memberDTO.getId());
+			
+			pstmt.executeUpdate(); //개수 리턴
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			MemberDAO.close(conn, pstmt);
+		}
 	}
 
 	public static void close(Connection conn, PreparedStatement pstmt) {
