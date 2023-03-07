@@ -28,7 +28,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>로그아웃</title>
 </head>
 <body>
 <h3>로그아웃^^</h3>

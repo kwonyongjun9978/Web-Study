@@ -41,7 +41,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>회원정보수정</title>
 </head>
 <body>
 <h3>회원정보수정 완료!!</h3>

@@ -31,7 +31,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>로그인</title>
 </head>
 <body>
 <h3><%=name %>님 로그인</h3>

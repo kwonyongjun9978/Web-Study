@@ -41,7 +41,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원가입</title>
+<title>회원가입 결과는?</title>
 </head>
 <body>
 <%if(su == 0){ %>

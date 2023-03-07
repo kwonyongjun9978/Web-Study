@@ -41,6 +41,8 @@ String name = memberDAO.memberLogin(id,pwd);
 	//HttpSession session = request.getSession(); - JSP는 세션객체가 이미 내장객체로 존재한다
 	session.setAttribute("memName", name);
 	session.setAttribute("memId", id);
+	session.setAttribute("memPwd", pwd);
+	
 	//페이지 이동
 	response.sendRedirect("loginOK.jsp");
 } %>
