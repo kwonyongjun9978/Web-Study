@@ -1,0 +1,78 @@
+package board.dao;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import board.bean.BoardDTO;
+
+public class BoardDAO {
+	private Connection conn; //Connection인터페이스로 conn변수 생성 ->메소드로 객체 생성
+	private PreparedStatement pstmt; //PreparedStatement pstmt변수 생성, 가이드역할 ->메소드로 객체 생성
+	private ResultSet rs;
+	
+	private String driver = "oracle.jdbc.driver.OracleDriver"; //풀 쿼리 네임으로 생성(패키지명 포함)
+	private String url = "jdbc:oracle:thin:@localhost:1521:xe";
+	private String username = "C##JAVA";
+	private String password = "1234";
+	
+	//static으로 생성하면 메모리에 1번만 생성(싱글톤)(한번만들어지면 계속 살아있다)
+	private static BoardDAO boardDAO = new BoardDAO();
+	
+	public static BoardDAO getInstance() {
+		return boardDAO;
+	}
+	
+	//driver loading
+	public BoardDAO() {
+		try {
+			Class.forName(driver); //new가 아니라Class타입으로 생성
+			System.out.println("driver loading 성공"); 
+			} catch (ClassNotFoundException e) {
+					e.printStackTrace();
+			} 
+	}
+			
+	public void getConnection() {
+		try {
+		conn = DriverManager.getConnection(url,username,password);
+		System.out.println("connection 성공");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public int boardWrite(BoardDTO boardDTO) {
+		String sql = "insert into board(seq,id,name,email,subject,content,ref)values(seq_board.nextval,?,?,?,?,?,seq_board.nextval)";
+		int su =0;
+		getConnection(); //접속
+		try {
+			pstmt = conn.prepareStatement(sql);
+		
+			pstmt.setString(1, boardDTO.getId());
+			pstmt.setString(2, boardDTO.getName());
+			pstmt.setString(3, boardDTO.getEmail());
+			pstmt.setString(4, boardDTO.getSubject());
+			pstmt.setString(5, boardDTO.getContent());
+			
+			su = pstmt.executeUpdate(); //실행
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			BoardDAO.close(conn, pstmt);
+	    }
+		return su;
+	}
+	
+	public static void close(Connection conn, PreparedStatement pstmt) {
+		try {
+			if(pstmt != null) pstmt.close();
+			if(conn != null)conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+	}
+}
