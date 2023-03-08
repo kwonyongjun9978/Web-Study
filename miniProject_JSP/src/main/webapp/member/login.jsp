@@ -11,7 +11,8 @@ String pwd = request.getParameter("pwd");
 //DB
 MemberDAO memberDAO = MemberDAO.getInstance();
 String name = memberDAO.memberLogin(id,pwd);
-String email = memberDAO.getEmailTo(id,pwd);
+//String email = memberDAO.getEmailTo(id,pwd);
+MemberDTO memberDTO = memberDAO.getEmailTo(id,pwd);
 %>    
 <!DOCTYPE html>
 <html>
@@ -36,12 +37,13 @@ String email = memberDAO.getEmailTo(id,pwd);
 	response.addCookie(cookie2);//클라이언트에 보내기
 	*/
 	
-	//세션
+	//세션 생성
 	//HttpSession session = request.getSession(); - JSP는 세션객체가 이미 내장객체로 존재한다
 	session.setAttribute("memName", name);
 	session.setAttribute("memId", id);
 	session.setAttribute("memPwd", pwd);
-	session.setAttribute("memEmail", email);
+	//session.setAttribute("memEmail", email);
+	session.setAttribute("memEmail", memberDTO.getEmail1()+"@"+memberDTO.getEmail2());
 	
 	//페이지 이동
 	response.sendRedirect("loginOK.jsp");

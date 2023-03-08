@@ -45,6 +45,7 @@ public class MemberDAO {
 		}
 	}
 	
+	/*
 	public String getEmailTo(String id, String pwd) {
 		String email = null;
 		String sql ="select * from member where id=? and pwd=?";
@@ -65,6 +66,32 @@ public class MemberDAO {
 			}
 				
 		return email;
+	}
+	*/
+	
+	public MemberDTO getEmailTo(String id, String pwd) {
+		MemberDTO memberDTO = null;
+		
+		String sql ="select * from member where id=? and pwd=?";
+		getConnection(); //Á¢¼Ó
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1,id);
+			pstmt.setString(2,pwd);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				memberDTO = new MemberDTO();
+				memberDTO.setName(rs.getString("email1"));
+				memberDTO.setName(rs.getString("email2"));
+			}
+			}catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				MemberDAO.close(conn, pstmt,rs);
+			}
+				
+		return memberDTO;
 	}
 	
 	public String memberLogin(String id, String pwd) {

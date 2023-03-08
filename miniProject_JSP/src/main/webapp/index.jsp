@@ -26,7 +26,7 @@ a:active{color: black; text-decoration: none;}
 	<a href="./member/deleteForm.jsp">회원탈퇴</a><br>
 	<a href="./board/boardWriteForm.jsp">글쓰기</a><br>	
 <%} %>	
-	<a href="">목록</a><br>
+	<a href="./board/boardList.jsp">목록</a><br>
 </h3>
 </div>
 </body>
