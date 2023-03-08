@@ -12,6 +12,7 @@ import java.util.Map;
 import board.bean.BoardDTO;
 
 
+
 public class BoardDAO {
 	private Connection conn; //Connection인터페이스로 conn변수 생성 ->메소드로 객체 생성
 	private PreparedStatement pstmt; //PreparedStatement pstmt변수 생성, 가이드역할 ->메소드로 객체 생성
@@ -104,14 +105,16 @@ public class BoardDAO {
 	    }
 	}
 	
-	public List<BoardDTO> boardList() {
+	public List<BoardDTO> boardList(int startNum, int endNum) {
 		List<BoardDTO> list = new ArrayList<BoardDTO>();
 		
-		String sql = "select * from board order by seq desc";
+		String sql = "select * from (select rownum rn, aa.* from (select * from board order by ref desc, step asc) aa) where rn>=? and rn<=?";
 		
 		getConnection();
 		try {
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, startNum);
+			pstmt.setInt(2, endNum);
 			rs = pstmt.executeQuery(); //실행 - ResultSet리턴
 			
 			while(rs.next()) {
@@ -139,6 +142,27 @@ public class BoardDAO {
 			BoardDAO.close(conn, pstmt, rs);
 		}
 		return list;
+	}
+	
+	public int getTotalA() {
+		int totalA = 0;
+		String sql = "select count(*) from board";
+		
+		getConnection();
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			rs.next();
+			totalA = rs.getInt(1);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			BoardDAO.close(conn, pstmt, rs);
+		}
+		return totalA;
 	}
 
 	

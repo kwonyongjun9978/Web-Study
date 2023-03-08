@@ -47,7 +47,7 @@ boardDAO.boardWrite(map);
 <script type="text/javascript">
 window.onload=function(){
 alert("글작성 완료");
-location.href="./boardList.jsp";
+location.href="./boardList.jsp?pg=1";
 }
 </script>
 </body>
