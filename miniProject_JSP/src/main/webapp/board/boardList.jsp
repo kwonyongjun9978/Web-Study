@@ -5,32 +5,26 @@
 <%@ page import="java.util.ArrayList" %> 
 <%@ page import="java.util.List" %> 
 <%@page import="java.text.SimpleDateFormat"%>
+<%@page import="board.bean.BoardPaging"%>
 
 <% 
 		//데이터
-		int pg = Integer.parseInt(request.getParameter("pg")); 
-		
-		//페이징 처리 - 1페이지당 5개씩
-		/*
-		      startNum  endNum 
-		 pg=1 rn>=1 and rn<=5
-		 pg=2 rn>=6 and rn<=10
-		 pg=3 rn>=11 and rn<=15
-		 */
-		
-		int endNum = pg*5;
-		int startNum = endNum-4;
+		int pg = Integer.parseInt(request.getParameter("pg"));
 
 		//DB
 		BoardDAO boardDAO = BoardDAO.getInstance();
-		List<BoardDTO> list = boardDAO.boardList(startNum, endNum);
+		List<BoardDTO> list = boardDAO.boardList();
 		
-		//총글수
+		//페이징 처리
 		int totalA = boardDAO.getTotalA();
-		System.out.println(totalA);
 		
-		//총 페이지수
-		int totalP = (totalA+4)/5 ;
+		BoardPaging boardPaging = new BoardPaging(); 
+		boardPaging.setCurrentPage(pg);
+		boardPaging.setPageBlock(3);
+		boardPaging.setPageSize(5);
+		boardPaging.setTotalA(totalA);
+		
+		boardPaging.makePagingHTML();
 
 %>
 <!DOCTYPE html>
@@ -43,12 +37,20 @@
 .subjectA:visited{color: black; text-decoration: none;}
 .subjectA:hover{color: hotpink; text-decoration: underline;}
 .subjectA:active{color: black; text-decoration: none;}
-</style>
-<style>
-#currentpagingdiv {float: left; border: 1px red solid; width: 20px; height: 20px; margin-left: 5px; text-align: center;}
-#pagingDiv {float: left; width: 20px; height: 20px; margin-left: 5px; text-align: center;}
-#currentpaging {color: red; text-decoration: none;}
-#paging {color: black; text-decoration: none;}
+
+#currentPaging{
+	color:red;
+	border: 1px solid red;
+	padding: 5px 5px; /* top, bottom, left, right */
+	margin: 5px; /* top, right, bottom, left */
+	cursor: pointer;
+}
+#paging{
+	color:black;
+	padding: 5px;
+	margin: 5px;
+	cursor: pointer;
+}
 </style>
 </head>
 <body>
@@ -63,12 +65,7 @@
 		<th width="100">조회수</th>
 		<th width="150">작성일</th>
 	</tr>	
-	<% for(int i=1; i<=totalP; i++) {
-		if(i == pg)
-			out.print("<div id='currentPagingDiv'><a id='currentPaging' href='/miniProject_JSP/board/boardList.jsp?pg=" + i +"'>" + i + "</a></div>");
-		else
-			out.print("<div id='pagingDiv'><a id='paging' href='/miniProject_JSP/board/boardList.jsp?pg=" + i +"'>" + i + "</a></div>");
-	}%>
+
 	<% if(list != null){ %>
 		<% for(BoardDTO boardDTO : list) { %>
 			<tr>
@@ -83,5 +80,13 @@
 		<%}//for %>
 	<%}//if %>		
 </table>
+<div style="border: 1px solid blue; margin-top: 15px; width: 850px; text-align: center;">
+ <%=boardPaging.getPagingHTML()%>
+</div>
+<script type="text/javascript">
+function boardPaging(pg){
+	location.href = "boardList.jsp?pg=" +pg;
+}
+</script>
 </body>
 </html>

@@ -9,6 +9,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
+
 import board.bean.BoardDTO;
 
 
@@ -18,10 +23,7 @@ public class BoardDAO {
 	private PreparedStatement pstmt; //PreparedStatement pstmt변수 생성, 가이드역할 ->메소드로 객체 생성
 	private ResultSet rs;
 	
-	private String driver = "oracle.jdbc.driver.OracleDriver"; //풀 쿼리 네임으로 생성(패키지명 포함)
-	private String url = "jdbc:oracle:thin:@localhost:1521:xe";
-	private String username = "C##JAVA";
-	private String password = "1234";
+	private DataSource ds;
 	
 	//static으로 생성하면 메모리에 1번만 생성(싱글톤)(한번만들어지면 계속 살아있다)
 	private static BoardDAO boardDAO = new BoardDAO();
@@ -32,23 +34,16 @@ public class BoardDAO {
 	
 	//driver loading
 	public BoardDAO() {
+		
 		try {
-			Class.forName(driver); //new가 아니라Class타입으로 생성
-			System.out.println("driver loading 성공"); 
-			} catch (ClassNotFoundException e) {
-					e.printStackTrace();
-			} 
+			Context ctx = new InitialContext();
+			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/oracle"); //Tomcat에서만 java:comp/env/ 붙어야 한다.
+		} catch (NamingException e) {
+			e.printStackTrace();
+		} 
+		
 	}
 			
-	public void getConnection() {
-		try {
-		conn = DriverManager.getConnection(url,username,password);
-		System.out.println("connection 성공");
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
-	
 	/*
 	public int boardWrite(BoardDTO boardDTO) {
 		String sql = "insert into board(seq,id,name,email,subject,content,ref)values(seq_board.nextval,?,?,?,?,?,seq_board.nextval)";
@@ -87,8 +82,9 @@ public class BoardDAO {
 	public void boardWrite(Map<String, String> map) {
 		String sql = "insert into board(seq,id,name,email,subject,content,ref)values(seq_board.nextval,?,?,?,?,?,seq_board.currval)";
 		int su =0;
-		getConnection(); //접속
 		try {
+			conn = ds.getConnection();
+			
 			pstmt = conn.prepareStatement(sql);
 		
 			pstmt.setString(1, map.get("id"));
@@ -105,16 +101,15 @@ public class BoardDAO {
 	    }
 	}
 	
-	public List<BoardDTO> boardList(int startNum, int endNum) {
+	public List<BoardDTO> boardList() {
 		List<BoardDTO> list = new ArrayList<BoardDTO>();
 		
-		String sql = "select * from (select rownum rn, aa.* from (select * from board order by ref desc, step asc) aa) where rn>=? and rn<=?";
+		String sql = "select * from board order by ref desc, step asc";
 		
-		getConnection();
 		try {
+			conn = ds.getConnection();
+			
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, startNum);
-			pstmt.setInt(2, endNum);
 			rs = pstmt.executeQuery(); //실행 - ResultSet리턴
 			
 			while(rs.next()) {
@@ -148,9 +143,9 @@ public class BoardDAO {
 		int totalA = 0;
 		String sql = "select count(*) from board";
 		
-		getConnection();
-		
 		try {
+			conn = ds.getConnection();
+			
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			
