@@ -6,17 +6,35 @@
 <%@ page import="java.util.List" %> 
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="board.bean.BoardPaging"%>
+<%@page import="java.util.HashMap"%>
+<%@page import="java.util.Map"%>
 
 <% 
 		//데이터
 		int pg = Integer.parseInt(request.getParameter("pg"));
 
+		//세션
+		String memId = (String)session.getAttribute("memId");
+		
 		//DB
 		BoardDAO boardDAO = BoardDAO.getInstance();
-		List<BoardDTO> list = boardDAO.boardList();
+		//List<BoardDTO> list = boardDAO.boardList();
+		
+		//1페이지당 5개씩
+		/*
+		
+		*/
+		int endNum = pg*5;
+		int startNum = endNum-4;
+		
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("startNum", startNum);
+		map.put("endNum", endNum);
+		List<BoardDTO> list = boardDAO.boardList(map);
+		
 		
 		//페이징 처리
-		int totalA = boardDAO.getTotalA();
+		int totalA = boardDAO.getTotalA(); //총 글수
 		
 		BoardPaging boardPaging = new BoardPaging(); 
 		boardPaging.setCurrentPage(pg);
@@ -70,7 +88,9 @@
 		<% for(BoardDTO boardDTO : list) { %>
 			<tr>
 				<td align="center"><%=boardDTO.getSeq() %></td>
-				<td><a class="subjectA" href=""><%=boardDTO.getSubject() %></a></td>
+				<td>
+				<a class="subjectA" href="#" onclick="isLogin('<%=memId%>, <%=boardDTO.getSeq() %>, <%=pg %>')"><%=boardDTO.getSubject() %></a>
+				</td>
 				<td align="center"><%=boardDTO.getId() %></td>
 				<td align="center"><%=boardDTO.getHit() %></td>
 				<td align="center">
@@ -80,12 +100,18 @@
 		<%}//for %>
 	<%}//if %>		
 </table>
-<div style="border: 1px solid blue; margin-top: 15px; width: 850px; text-align: center;">
+<div style="margin-top: 15px; width: 850px; text-align: center;">
  <%=boardPaging.getPagingHTML()%>
 </div>
 <script type="text/javascript">
 function boardPaging(pg){
 	location.href = "boardList.jsp?pg=" +pg;
+}
+function isLogin(memId, seq, pg){
+	alert(memId + ", " + seq + ", " + pg)
+	if(memId == 'null') 
+		lert("먼저 로그인하세요");
+	else location.href="boardView.jsp?seq=" + seq + "&pg=" +pg; 
 }
 </script>
 </body>

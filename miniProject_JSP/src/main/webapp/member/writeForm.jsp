@@ -14,7 +14,9 @@ font-weight: bold;
 </style>
 </head>
 <body>
-<h3>회원가입</h3>
+<h3>
+<img src="../image/12.gif" width="80" height="80" alt="JUN" onclick="location.href='../index.jsp'" style="cursor: pointer;"> 회원가입
+</h3>
  <form name="writeForm" method="post" action="write.jsp">
   <table border="1" cellpadding="5" cellspacing="0">
    <tr>
@@ -29,6 +31,7 @@ font-weight: bold;
   	<th align="center">아이디</th>
   	<td>
   	 <input type="text" name="id" size="30" id="id" placeholder="아이디 입력">
+  	 <input type="button" value="중복체크" onclick="checkId()">
   	 <div id="idDiv"></div>
   	</td>
    </tr>
@@ -115,5 +118,17 @@ font-weight: bold;
  -->
  <!-- 상대 주소 -->
 <script type="text/javascript" src="../js/member.js"></script>
+<script type="text/javascript">
+function checkId(){
+	var id = document.getElementById("id").value;
+	
+	document.getElementById("idDiv").innerText="";
+		
+	if(id == "") 
+		document.getElementById("idDiv").innerHTML="<font color='magenta'>먼저 아이디를 입력하세요</font>"
+	else
+		window.open("./checkId.jsp?id=" + id, "checkId", "width=500 height=150 left=900 top=200")
+}
+</script>
 </body>
 </html>
