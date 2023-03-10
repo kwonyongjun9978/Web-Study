@@ -89,7 +89,7 @@
 			<tr>
 				<td align="center"><%=boardDTO.getSeq() %></td>
 				<td>
-				<a class="subjectA" href="#" onclick="isLogin('<%=memId%>, <%=boardDTO.getSeq() %>, <%=pg %>')"><%=boardDTO.getSubject() %></a>
+				<a class="subjectA" href="#" onclick="isLogin('<%=memId%>', <%=boardDTO.getSeq() %>, <%=pg %>)"><%=boardDTO.getSubject() %></a>
 				</td>
 				<td align="center"><%=boardDTO.getId() %></td>
 				<td align="center"><%=boardDTO.getHit() %></td>
