@@ -108,7 +108,6 @@ function boardPaging(pg){
 	location.href = "boardList.jsp?pg=" +pg;
 }
 function isLogin(memId, seq, pg){
-	alert(memId + ", " + seq + ", " + pg)
 	if(memId == 'null') 
 		lert("먼저 로그인하세요");
 	else location.href="boardView.jsp?seq=" + seq + "&pg=" +pg; 

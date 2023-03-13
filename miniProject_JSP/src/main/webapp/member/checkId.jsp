@@ -33,6 +33,7 @@ boolean existId = memberDAO.isExistID(id); //아이디가 있다 -> true, 사용
 <script type="text/javascript">
 function checkIdClose(id){
 	opener.writeForm.id.value = id
+	opener.writeForm.check.value = id //중복체크 버튼을 눌렀다는 확인
 	window.close()
 	opener.writeForm.pwd.focus();
 }
