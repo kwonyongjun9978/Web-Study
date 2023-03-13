@@ -31,7 +31,7 @@ public class UserDAO {
 	}
 	public void write(UserDTO userDTO) {
 		SqlSession sqlSession = sqlSessionFactory.openSession(); //»ý¼º
-		sqlSession.insert("write", userDTO);
+		sqlSession.insert("userSQL.write", userDTO);
 		sqlSession.commit();
 		sqlSession.close();
 	}

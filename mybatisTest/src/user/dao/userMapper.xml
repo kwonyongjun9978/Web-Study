@@ -2,11 +2,9 @@
 <!DOCTYPE mapper
  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
- <mapper>
+ <mapper namespace="userSQL">
  	<insert id="write" parameterType="user.bean.UserDTO">
  		insert into usertable values(#{name}, #{id}, #{pwd})
- 		
  	</insert>
- 	<insert id=""></insert>
- 	<insert id=""></insert>
+
  </mapper>
