@@ -31,6 +31,7 @@ font-weight: bold;
   	<th align="center">아이디</th>
   	<td>
   	 <input type="text" name="id" size="30" id="id" placeholder="아이디 입력">
+  	 <input type="hidden" id="check" value="">
   	 <input type="button" value="중복체크" onclick="checkId()">
   	 <div id="idDiv"></div>
   	</td>
