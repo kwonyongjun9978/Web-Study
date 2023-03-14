@@ -38,10 +38,10 @@
 	</delete>
 	
 	<select id="getUserName" parameterType="String" resultType="user">
-		  SELECT * FROM usertable WHERE name LIKE '%' || #{value} || '%'
+		  SELECT * FROM usertable WHERE name LIKE '%' || #{name} || '%'
 	</select>
 	
 	<select id="getUserId" parameterType="String" resultType="user">
-		select * from usertable where id=#{value}
+		select * from usertable where id=#{id}
 	</select>
  </mapper>
