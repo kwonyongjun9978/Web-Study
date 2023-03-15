@@ -33,15 +33,35 @@
 		update usertable set name=#{name}, pwd=#{pwd} where id=#{id}
 	</update>
 	
-	<delete id="delete" parameterType="java.util.Map">
+	<delete id="delete" parameterType="String">
 		delete usertable where id=#{id}
 	</delete>
 	
-	<select id="getUserName" parameterType="String" resultType="user">
-		  SELECT * FROM usertable WHERE name LIKE '%' || #{name} || '%'
+	<select id="search" parameterType="java.util.Map" resultType="user">
+		 <!--  
+		 select * from usertable where
+		 <if test="columnName == 'name'">
+		 	name like '%' || #{value} || '%'
+		 </if>
+		 <if test="columnName == 'id'">
+		 	id like '%' || #{value} || '%'
+		 </if>
+		 -->
+		 
+		 <!-- 
+		 select * from usertable where
+		 <choose>
+		 	<when test="columnName == 'name'">
+		 		name like '%' || #{value} || '%'
+		 	</when>
+		 	<otherwise>
+		 		id like '%' || #{value} || '%'
+		 	</otherwise>
+		 </choose> 
+		 -->
+		 
+		 select * from usertable where ${columnName} like '%' || #{value} || '%'
+		
 	</select>
 	
-	<select id="getUserId" parameterType="String" resultType="user">
-		select * from usertable where id=#{id}
-	</select>
  </mapper>

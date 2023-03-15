@@ -26,9 +26,7 @@ public class UserDeleteService implements UserService {
 			return;
 		}
 		
-		Map<String, String> map = new HashMap<String, String>();
-		map.put("id", id);
-		userDAO.delete(map);
+		userDAO.delete(id);
 		
 		System.out.println("데이터를 삭제하였습니다.");
 

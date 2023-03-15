@@ -53,7 +53,7 @@ public class UserDAO {
 
 	public UserDTO getUser(String id) {
 		SqlSession sqlSession = sqlSessionFactory.openSession(); //积己
-		UserDTO userDTO = sqlSession.selectOne("userSQL.getUser", id);
+		UserDTO userDTO = sqlSession.selectOne("userSQL.getUser", id); //selectOne : 按眉甫 逞败霖促
 		sqlSession.close();
 		return userDTO;
 	}
@@ -65,25 +65,20 @@ public class UserDAO {
 		sqlSession.close();
 	}
 
-	public void delete(Map<String, String> map) {
+	public void delete(String id) {
 		SqlSession sqlSession = sqlSessionFactory.openSession(); //积己
-		sqlSession.delete("userSQL.delete", map);
+		sqlSession.delete("userSQL.delete", id);
 		sqlSession.commit();
 		sqlSession.close();
 	}
 
-	public List<UserDTO> getUserName(String name) {
+	public List<UserDTO> search(Map<String, String> map) {
 		SqlSession sqlSession = sqlSessionFactory.openSession(); //积己
-		List<UserDTO> list = sqlSession.selectList("userSQL.getUserName", name);
+		List<UserDTO> list = sqlSession.selectList("userSQL.search", map);
 		sqlSession.close();
 		return list;
 	}
-	
-	public UserDTO getUserId(String id) {
-		SqlSession sqlSession = sqlSessionFactory.openSession(); //积己
-		UserDTO userDTO = sqlSession.selectOne("userSQL.getUserId", id);
-		sqlSession.close();
-		return userDTO;
-	}
+
+
 
 }
