@@ -34,7 +34,7 @@
 	memberDTO.setAddr2(addr2);
 	
 	//DB
-	MemberDAO memberDAO = MemberDAO.getInstance(); //클래스 생성
+	MemberDAO memberDAO = MemberDAO.getInstance(); //클래스 생성		
 	memberDAO.memberUpdate(memberDTO); //호출
 %>        
 <!DOCTYPE html>
@@ -49,7 +49,7 @@
 <script type="text/javascript">
 window.onload=function(){
 	alert("회원정보수정 완료!!");
-	location.href="loginForm.jsp";
+	location.href = "loginForm.jsp";
 }
 </script>
 </body>
