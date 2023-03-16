@@ -33,7 +33,7 @@ public class MemberDAO {
 		}
 	}
 	
-	public MemberDTO memberLogin(Map map) {
+	public MemberDTO memberLogin(Map<String, String> map) {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		MemberDTO memberDTO = sqlSession.selectOne("memberSQL.memberLogin", map);
 		sqlSession.close();
@@ -71,7 +71,7 @@ public class MemberDAO {
 		sqlSession.close();
 		return su;
 	}
-	
+	/*
 	public boolean isExistPwd(String id, String pwd) {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		boolean exist = false;
@@ -86,7 +86,7 @@ public class MemberDAO {
 		sqlSession.close();
 		return exist;
 	}
-
+	*/
 	public void memberDelete(String id) {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		sqlSession.delete("memberSQL.memberDelete", id);
