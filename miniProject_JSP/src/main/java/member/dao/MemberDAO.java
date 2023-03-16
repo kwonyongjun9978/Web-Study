@@ -38,8 +38,8 @@ public class MemberDAO {
 		} 
 	}
 	
-	public String memberLogin(String id, String pwd) {
-		String name = null;
+	public MemberDTO memberLogin(String id, String pwd) {
+		MemberDTO memberDTO = null;
 		String sql ="select * from member where id=? and pwd=?";
 		
 		try {
@@ -51,7 +51,10 @@ public class MemberDAO {
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
-				name = rs.getString("name");
+				memberDTO = new MemberDTO();
+				memberDTO.setName(rs.getString("name"));
+				memberDTO.setEmail1(rs.getString("email1"));
+				memberDTO.setEmail2(rs.getString("email2"));
 			}
 			}catch (SQLException e) {
 				e.printStackTrace();
@@ -59,7 +62,7 @@ public class MemberDAO {
 				MemberDAO.close(conn, pstmt,rs);
 			}
 				
-		return name;
+		return memberDTO;
 	}
 	
 	public MemberDTO getMember(String id) {

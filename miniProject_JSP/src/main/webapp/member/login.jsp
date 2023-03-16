@@ -11,7 +11,7 @@ String pwd = request.getParameter("pwd");
 
 //DB
 MemberDAO memberDAO = MemberDAO.getInstance();
-String name = memberDAO.memberLogin(id,pwd);
+MemberDTO memberDTO = memberDAO.memberLogin(id,pwd);
 %> 
 <!DOCTYPE html>
 <html>
@@ -21,14 +21,15 @@ String name = memberDAO.memberLogin(id,pwd);
 </head>
 <body>
 <%
-if(name == null){
+if(memberDTO == null){
 	//페이지 이동(로그인 실패)
 	response.sendRedirect("loginFail.jsp");
 }else{
 	//세션 생성
-	session.setAttribute("memName", name);
+	session.setAttribute("memName", memberDTO.getName());
 	session.setAttribute("memId", id);
 	session.setAttribute("memPwd", pwd);
+	session.setAttribute("memEmail", memberDTO.getEmail1()+"@"+memberDTO.getEmail2());
 	
 	//페이지 이동(로그인 성공)
 	response.sendRedirect("loginOK.jsp");
