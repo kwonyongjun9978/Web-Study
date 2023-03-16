@@ -35,6 +35,7 @@ if(memberDTO == null){
 	session.setAttribute("memName", memberDTO.getName());
 	session.setAttribute("memId", id);
 	session.setAttribute("memPwd", pwd);
+	session.setAttribute("memEmail", memberDTO.getEmail1()+"@"+memberDTO.getEmail2());
 	
 	//페이지 이동(로그인 성공)
 	response.sendRedirect("loginOK.jsp");

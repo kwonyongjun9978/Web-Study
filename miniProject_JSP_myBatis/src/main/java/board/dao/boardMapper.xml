@@ -7,29 +7,27 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="boardWrite" parameterType="java.util.Map">
 		insert into board(seq,id,name,email,subject,content,ref)
 		values(seq_board.nextval
-			,#{id}
-			,#{name}
-			,#{email}
-			,#{subject}
-			,#{content}
-			,seq_board.currval)
+			 , #{id}
+			 , #{name}
+			 , #{email}
+			 , #{subject}
+			 , #{content}
+			 , seq_board.currval)
 	</insert>
 	
 	<!-- 목록 -->
 	<select id="boardList" parameterType="java.util.Map" resultType="board">
-		<!-- 
-		select * from
-		(select ROWNUM RN, TT.* from
-		(select * from board order by REF desc, step asc) TT
-		 where RN between #{startNum} and #{endNum}
-		 -->
+		<!-- SELECT * FROM 
+		(SELECT ROWNUM RN, TT.* FROM
+		(SELECT * FROM BOARD ORDER BY REF DESC, STEP ASC) TT 
+		)WHERE RN BETWEEN #{startNum} AND #{endNum} -->
 		 
-		 <![CDATA[
-		 select * from
-		(select ROWNUM RN, TT.* from
-		(select * from board order by REF desc, step asc) TT
-		 where RN > #{startNum} and RN <= #{endNum}
-		 ]]>
+		<![CDATA[
+		SELECT * FROM 
+		(SELECT ROWNUM RN, TT.* FROM
+		(SELECT * FROM BOARD ORDER BY REF DESC, STEP ASC) TT 
+		)WHERE RN >= #{startNum} AND RN <= #{endNum}
+		]]>
 	</select>
 	
 	<!-- Total -->
@@ -38,6 +36,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="getBoard" parameterType="int" resultType="board">
-		select * from board where seq = #{seq}
+		SELECT * FROM BOARD WHERE SEQ = #{seq}
 	</select>
 </mapper>

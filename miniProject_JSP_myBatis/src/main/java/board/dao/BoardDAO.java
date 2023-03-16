@@ -35,7 +35,6 @@ public class BoardDAO {
 		}	
 	}
 	
-	
 	public void boardWrite(Map<String, String> map) {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		sqlSession.insert("boardSQL.boardWrite", map);
@@ -59,7 +58,7 @@ public class BoardDAO {
 	
 	public BoardDTO getBoard(int seq) {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
-		BoardDTO boardDTO = sqlSession.selectOne("boardSQL.getBoard");
+		BoardDTO boardDTO = sqlSession.selectOne("boardSQL.getBoard", seq);
 		sqlSession.close();
 		return boardDTO;
 	}
