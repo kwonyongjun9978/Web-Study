@@ -45,18 +45,7 @@ font-weight: bold;
    
   </table>
  </form>
- <script type="text/javascript">
- function checkLogin(){
-		document.getElementById("idDiv").innerText="";
-		document.getElementById("pwdDiv").innerText="";
-		
-		if(document.getElementById("id").value == "") 
-			document.getElementById("idDiv").innerText="아이디를 입력하세용";
-		else if(document.getElementById("pwd").value == "") 
-			document.getElementById("pwdDiv").innerText="비밀번호를 입력하세용";
-		else 
-			document.loginForm.submit();
-	}
+ <script type="text/javascript" src="../js/member.js">
  </script>
 </body>
 </html>

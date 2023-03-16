@@ -45,6 +45,7 @@ public class BoardDAO {
 	}
 			
 	/*
+	BoardDTO사용
 	public int boardWrite(BoardDTO boardDTO) {
 		String sql = "insert into board(seq,id,name,email,subject,content,ref)values(seq_board.nextval,?,?,?,?,?,seq_board.nextval)";
 		int su =0;
@@ -66,22 +67,11 @@ public class BoardDAO {
 	    }
 		return su;
 	}
-	
-	public static void close(Connection conn, PreparedStatement pstmt) {
-		try {
-			if(pstmt != null) pstmt.close();
-			if(conn != null)conn.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-
-	}
 	*/
 	
 	//map사용
 	public void boardWrite(Map<String, String> map) {
 		String sql = "insert into board(seq,id,name,email,subject,content,ref)values(seq_board.nextval,?,?,?,?,?,seq_board.currval)";
-		int su =0;
 		try {
 			conn = ds.getConnection();
 			
@@ -93,7 +83,7 @@ public class BoardDAO {
 			pstmt.setString(4, map.get("subject"));
 			pstmt.setString(5, map.get("content"));
 			
-			su = pstmt.executeUpdate(); //실행
+			pstmt.executeUpdate(); //실행
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {

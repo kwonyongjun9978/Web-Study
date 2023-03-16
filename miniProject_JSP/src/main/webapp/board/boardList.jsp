@@ -17,12 +17,8 @@
 		
 		//DB
 		BoardDAO boardDAO = BoardDAO.getInstance();
-		//List<BoardDTO> list = boardDAO.boardList();
-		
+
 		//1페이지당 5개씩
-		/*
-		
-		*/
 		int endNum = pg*5;
 		int startNum = endNum-4;
 		
@@ -30,7 +26,6 @@
 		map.put("startNum", startNum);
 		map.put("endNum", endNum);
 		List<BoardDTO> list = boardDAO.boardList(map);
-		
 		
 		//페이징 처리
 		int totalA = boardDAO.getTotalA(); //총 글수
@@ -86,7 +81,7 @@
 			<tr>
 				<td align="center"><%=boardDTO.getSeq() %></td>
 				<td>
-				<a class="subjectA" href="#" onclick="isLogin('<%=memId%>', <%=boardDTO.getSeq() %>, <%=pg %>)"><%=boardDTO.getSubject() %></a>
+				<a class="subjectA" onclick="isLogin('<%=memId%>', <%=boardDTO.getSeq() %>, <%=pg %>)"><%=boardDTO.getSubject() %></a>
 				</td>
 				<td align="center"><%=boardDTO.getId() %></td>
 				<td align="center"><%=boardDTO.getHit() %></td>
@@ -106,7 +101,7 @@ function boardPaging(pg){
 }
 function isLogin(memId, seq, pg){
 	if(memId == 'null') 
-		lert("먼저 로그인하세요");
+		alert("먼저 로그인하세요");
 	else location.href="boardView.jsp?seq=" + seq + "&pg=" +pg; 
 }
 </script>

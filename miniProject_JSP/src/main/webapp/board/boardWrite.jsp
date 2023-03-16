@@ -6,13 +6,16 @@
 <%@ page import="java.util.HashMap" %>      
 <%
 request.setCharacterEncoding("UTF-8");
+
 //데이터를 가져옴(boardWriteForm에서)
 String subject = request.getParameter("subject");
 String content = request.getParameter("content");
+
 //세션을 통해서 데이터를 가져옴(톰켓 서버에서)
 String name = (String)session.getAttribute("memName");
 String id = (String)session.getAttribute("memId");
 String email = (String)session.getAttribute("memEmail");
+
 /*
 //BoardDTO에 데이터 저장
 BoardDTO boardDTO = new BoardDTO();
@@ -29,10 +32,13 @@ map.put("name", name);
 map.put("email", email);
 map.put("subject", subject);
 map.put("content", content);
+
 //DB 연동
 BoardDAO boardDAO = BoardDAO.getInstance();
-//int su =boardDAO.boardWrite(boardDTO);
 boardDAO.boardWrite(map);
+
+//int su = boardDAO.boardWrite(boardDTO);
+
 %>
 <!DOCTYPE html>
 <html>
