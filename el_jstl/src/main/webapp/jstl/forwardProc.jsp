@@ -28,7 +28,7 @@ list2.add(cc);
 request.setAttribute("list", list);
 request.setAttribute("list2", list2);
 
-//페이지 이동
+//페이지 이동(객체 이동 가능)
 RequestDispatcher dispatcher = request.getRequestDispatcher("forwardResult.jsp"); //상대번지
 dispatcher.forward(request, response); //제어권 넘기기
 %>
