@@ -53,7 +53,7 @@ public class UserDAO {
 
 	public UserDTO getUser(String id) {
 		SqlSession sqlSession = sqlSessionFactory.openSession(); //생성
-		UserDTO userDTO = sqlSession.selectOne("userSQL.getUser", id); //selectOne : 객체를 넘겨준다
+		UserDTO userDTO = sqlSession.selectOne("userSQL.getUser", id); //selectOne메소드는 오직 하나의 객체만을 리턴해야 한다는 것(userMapper.xml로)
 		sqlSession.close();
 		return userDTO;
 	}
