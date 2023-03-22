@@ -8,7 +8,7 @@
 </head>
 <body>
 <form action="/mvcMember/member/checkId.do">
-<h3>${param.id }는 사용 불가능</h3>
+<h3>${requestScope.id }는 사용 불가능</h3>
 아이디<input type="text" name="id"> <input type="submit" value="중복체크">
 </form>
 </body>

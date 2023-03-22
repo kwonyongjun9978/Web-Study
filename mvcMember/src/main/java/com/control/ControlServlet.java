@@ -100,7 +100,7 @@ public class ControlServlet extends HttpServlet {
 		if(request.getMethod().equals("POST")) request.setCharacterEncoding("UTF-8");
 		
 		//요청이 들어왔을 때 => http://localhost:8080/mvcmember/member/writeForm.do
-		String category = request.getServletPath();
+		String category = request.getServletPath(); ///member/writeForm.do
 		System.out.println("category = "+category); // 결과가 /member/writeForm.do
 	  
 		CommandProcess com = (CommandProcess)map.get(category); //member.service.WriteFormService
