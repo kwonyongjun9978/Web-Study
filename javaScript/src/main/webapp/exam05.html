@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<script>
+//증감 연산자
+let num = 5;
+num++; //6, num = num + 1, num+=1
+++num; //7, num = num + 1, num+=1
+document.write("num = " + num + "<br>");
+
+let num2 = num++; //후행
+/*
+우선순위
+let num2 = num; //7
+num++; //8
+*/
+document.write("num = " + num + "&emsp; num2 = " + num2 + "<br>");
+
+let num3 = --num; //선행
+/*
+--num; //7
+let num3 = num; //7
+*/
+document.write("num = " + num + "&emsp; num3 = " + num3 + "<br>");
+</script>
+</body>
+</html>
