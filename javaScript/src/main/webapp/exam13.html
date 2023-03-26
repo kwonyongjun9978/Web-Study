@@ -37,11 +37,11 @@ document.write("<br>");
 
 
 function sumInt(x, y){
-	var isStrX = ! isNaN(x);
-	var isStrY = ! isNaN(y);
+	var isStrX = !isNaN(x);
+	var isStrY = !isNaN(y);
 	
-	if(! isStrX || ! isStrY){
-		return "숫자 형태에거나 숫자값이 전달되어야 합니다.";
+	if(!isStrX || !isStrY){
+		return "숫자 형태이거나 숫자값이 전달되어야 합니다.";
 	}
 	
 	var result = parseInt(x) + parseInt(y);
