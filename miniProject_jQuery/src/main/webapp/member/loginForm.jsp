@@ -108,7 +108,7 @@ font-weight: bold;
 		 $('#pwdDiv').text('비밀먼호 입력');
 		 $('#pwd').focus();
 	 }else{
-		 $.ajax({
+		 $.ajax({ //서버요청
 			 type: 'post', //'get' or 'post'
 			 
 			 url: '/miniProject_jQuery/member/login.do',

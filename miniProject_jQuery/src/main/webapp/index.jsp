@@ -64,6 +64,7 @@ html {
 			onclick="location.href='/miniProject_jQuery/index.jsp'" 
 			style="cursor: pointer; border-radius: 50%; border: 1px solid #ccc; margin: 10px; width: 150px; height: 200px;">
 		</h1>
+		<jsp:include page="./main/menu.jsp" />
 	</div>
 	
 	<div id="container">
@@ -75,9 +76,13 @@ html {
 			<h3>
 				<c:if test="${empty display}">
 					<img src="./img/12.gif" style="border-radius: 80%;">
+					<c:if test="${sessionScope.memId != null}">
+					<h3>누추한분이 이런 귀한곳에...ㅎㅎ</h3>
+					</c:if>
 				</c:if>
 				
 				<c:if test="${not empty display}">
+					
 					<jsp:include page="${display }"/>
 				</c:if>
 			</h3>
