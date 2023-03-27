@@ -20,12 +20,9 @@ public class BoardListService implements CommandProcess {
 		//데이터
 		int pg = Integer.parseInt(request.getParameter("pg"));
 		
-		String id = request.getParameter("id");
-		
-		//DB
+		//DB - 1페이지당 5개씩
 		BoardDAO boardDAO = BoardDAO.getInstance();
 	
-		
 		int endNum = pg*5;
 		int startNum = endNum-4;
 		

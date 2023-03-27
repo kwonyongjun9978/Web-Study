@@ -99,15 +99,15 @@ public class ControlServlet extends HttpServlet {
 		//한글처리
 		if(request.getMethod().equals("POST")) request.setCharacterEncoding("UTF-8");
 		
-		//요청이 들어왔을 때 => http://localhost:8080/mvcmember/member/writeForm.do
-		String category = request.getServletPath(); ///member/writeForm.do
-		System.out.println("category = "+category); // 결과가 /member/writeForm.do
+		//요청이 들어왔을 때 => http://localhost:8080/mvcboard/board//boardWriteForm.do
+		String category = request.getServletPath(); // /board//boardWriteForm.do
+		System.out.println("category = "+category); // 결과가 /board//boardWriteForm.do
 	  
-		CommandProcess com = (CommandProcess)map.get(category); //member.service.WriteFormService
+		CommandProcess com = (CommandProcess)map.get(category); //board.service.BoardWriteFormService
 		String view = null;
 	  
 		try {
-			view = com.requestPro(request, response); // "/member/writeForm.jsp"
+			view = com.requestPro(request, response); // "/board/boardWrite.jsp"
 		} catch (Throwable e) {
 			e.printStackTrace();
 		}

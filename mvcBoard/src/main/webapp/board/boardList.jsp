@@ -56,7 +56,7 @@
 </c:if>
 </table>
 <div style="margin-top: 15px; width: 850px; text-align: center;">
- ${boardPaging.getPagingHTML() }
+ ${boardPaging.pagingHTML }
 </div>
 <script type="text/javascript">
 function boardPaging(pg){
