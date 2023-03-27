@@ -13,6 +13,7 @@ public class WriteService implements CommandProcess {
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) {
 		
+		//ตฅภฬลอ
 		String name = request.getParameter("name");
 		String id = request.getParameter("id");
 		String pwd = request.getParameter("pwd");
