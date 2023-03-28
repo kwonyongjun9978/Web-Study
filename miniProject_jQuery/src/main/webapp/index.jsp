@@ -60,7 +60,7 @@ html {
 <body>
 <div id="wrap">
 	<div id="header">
-		<h1><img src="/miniProject_jQuery/img/main.jpg" alt="mainImg" 
+		<h1><img src="/miniProject_jQuery/img/123456.png" alt="mainImg" 
 			onclick="location.href='/miniProject_jQuery/index.jsp'" 
 			style="cursor: pointer; border-radius: 50%; border: 1px solid #ccc; margin: 10px; width: 150px; height: 200px;">
 		</h1>

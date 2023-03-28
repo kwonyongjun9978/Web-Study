@@ -60,11 +60,21 @@ color: red;
 font-size: 8pt;
 font-weight: bold;
 }
+
+form[name="loginForm"] {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   margin: 0 auto;
+   text-align: left;
+}
 </style>
 </head>
 <body>
-<img src="../img/12.gif" width="80" height="80" alt="JUN" onclick="location.href='../index.jsp'" style="cursor: pointer; border-radius: 80%;">
+
  <form name="loginForm" id="loginForm">
+ <img src="../img/12.gif" width="80" height="80" alt="JUN" onclick="location.href='../index.jsp'" style="cursor: pointer; border-radius: 80%;">
+ <br>
   <table border="1" cellpadding="5" cellspacing="0">
    <tr>
     <th width="70" align="center">아이디</th>

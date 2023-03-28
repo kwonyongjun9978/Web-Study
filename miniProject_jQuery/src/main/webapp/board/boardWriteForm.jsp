@@ -5,11 +5,17 @@
 <head>
 <meta charset="UTF-8">
 <title>글쓰기</title>
-
+<style>
+#boardWriteForm div{
+	font-size:8pt;
+	color: red;
+	font-weight: bold;
+}
+</style>
 </head>
 <body>
 <h3>글쓰기</h3>
-<form id="boardWriteForm" method="post" action="/miniProject_jQuery/board/boardWrite.do">
+<form id="boardWriteForm">
 <table border="1" cellpadding="5" cellspacing="0">
  <tr>
    <th align="center">제목</th>

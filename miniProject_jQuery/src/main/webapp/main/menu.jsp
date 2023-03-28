@@ -40,5 +40,5 @@
 	<li><a href="/miniProject_jQuery/board/boardWriteForm.do">글쓰기</a></li>
 	</c:if>
 	
-	<li><a href="">목록</a></li>
+	<li><a href="/miniProject_jQuery/board/boardList.do?pg=1">목록</a></li>
 </ul>

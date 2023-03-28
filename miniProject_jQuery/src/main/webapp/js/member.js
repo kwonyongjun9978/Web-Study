@@ -9,11 +9,9 @@ $('#boardWriteBtn').click(function(){
 	
 	if($('#subject').val() == ''){
 		$('#subjectDiv').text('제목을 입력하세요');
-		$('#subjectDiv').css('color', 'red');
 		$('#subjectDiv').focus();
 	}else if($('#content').val() == ''){
 		$('#contentDiv').text('내용을 입력하세요');
-		$('#contentDiv').css('color', 'red');
 		$('#contentDiv').focus();
 	}else{
 		$.ajax({
@@ -25,7 +23,7 @@ $('#boardWriteBtn').click(function(){
             	data = data.trim();
 	            if(data == "write"){
 	               alert('글작성 완료!!');
-	               location.href='../index.jsp';
+	               location.href='/miniProject_jQuery/board/boardList.do?pg=1';
 	            }
 	            else {
 	               alert('글 작성 실패ㅠㅠ');
