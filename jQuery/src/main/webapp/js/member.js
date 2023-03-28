@@ -28,7 +28,6 @@ $(function(){
 			//document.form1.gender[0].checked = true;
 			//$('input[name="gender"]:eq(1)').attr('checked', true);
 			$('input[name="gender"]:eq(1)').prop('checked', true);
-		
 			return false;
 		}
 		
