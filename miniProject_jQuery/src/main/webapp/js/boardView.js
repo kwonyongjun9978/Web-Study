@@ -2,20 +2,32 @@ $(document).ready(function(){
 	$.ajax({
 		type: 'post',
 		url: '/miniProject_jQuery/board/getBoard.do',
-		data: 'pg=' + $('#pg').val() + '&seq=' + $('#seq').val(),
+		data: 'seq=' + $('#seq').val(), //{'seq' : $('#seq').val()}
 		dataType: 'json',
 		success: function(data){
-		
-		$('#subject').text(data.subject);
-		$('tr > td:eq(1)').text('글번호: '+ data.seq);
-		$('tr > td:eq(2)').text('작성자: '+ data.id);
-		$('tr > td:eq(3)').text('조회수: '+ data.hit);
-		$('#content').text(data.content);
+			//alert(JSON.stringify(data));
 			
+			$('#subjectSpan').text(data.subject);
+			$('#seqSpan').text(data.seq);
+			$('#idSpan').text(data.id);
+			$('#hitSpan').text(data.hit);
+			$('#contentSpan').text(data.content);
+			
+			//자신의 글??
+			if($('#memId').val() == data.id)
+				$('#boardViewSpan').show();
+			else
+				$('#boardViewSpan').hide();	
 		},
 		error: function(err){
 			console.log(err);	
 		}
 		
 	});
+});
+
+//글수정 폼
+$('#boardUpdateFormBtn').click(function(){
+	$('boardViewForm').attr('action', '/miniProject/board/boardUpdateForm.do');
+	$('boardViewForm').submit(); //submit()은 name 속성만 가져간다.
 });

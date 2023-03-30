@@ -5,17 +5,17 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.control.CommandProcess;
 
-public class BoardViewService implements CommandProcess {
+public class BoardUpdateFormService implements CommandProcess {
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) {
 		//µ•¿Ã≈Õ
-		String pg = request.getParameter("pg");
-		String seq = request.getParameter("seq");
+		int pg = Integer.parseInt(request.getParameter("pg"));
+		int seq = Integer.parseInt(request.getParameter("seq"));
 		
 		request.setAttribute("pg", pg);
 		request.setAttribute("seq", seq);
-		request.setAttribute("display", "/board/boardView.jsp");
+		request.setAttribute("display", "/board/boardUpdateForm.jsp");
 		return "/index.jsp";
 	}
 

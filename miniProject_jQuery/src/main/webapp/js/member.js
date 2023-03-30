@@ -61,6 +61,8 @@ $('#writeBtn').click(function(){
       $('#idDiv').val('중복체크 하세요');
    }
    else {
+	   
+	  
       //새로운 페이지를 열어준다.
       //$('#writeForm').submit();
       
