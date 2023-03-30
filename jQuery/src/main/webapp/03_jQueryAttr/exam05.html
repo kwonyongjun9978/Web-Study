@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+ul {
+   padding: 0;
+   margin: 0;
+   width: 670px;
+   list-style: none;
+}
+li {
+   float: left;
+}
+ul:after {
+   content: '';
+   display: block;
+   float: none;
+   clear: both;
+}
+img {
+   border: none;
+}
+</style>
+</head>
+<body>
+<ul>
+	<li>
+		<a href="#"><img src="../img/jquery.jpg" alt="jQuery" /></a>
+	</li>
+	<li>
+		<a href="#"><img src="../img/javascript.jpg" alt="javascript" /></a>
+	</li>
+	<li>
+		<a href="#"><img src="../img/css.jpg" alt="CSS" /></a>
+	</li>
+	<li>
+		<a href="#"><img src="../img/html.jpg" alt="HTML" /></a>
+	</li>
+</ul>
+<script src="http://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+$(function(){
+	$('img[src="../img/jquery.jpg"]').hover(function(){
+		$(this).attr('src', '../img/jquery_on.jpg');
+	}, function(){
+		$(this).attr('src', '../img/jquery.jpg');
+	});
+	
+	$('img[alt="javascript"]').hover(function(){
+		$(this).attr('src', '../img/javascript_on.jpg');
+	}, function(){
+		$(this).attr('src', '../img/javascript.jpg');
+	});
+	
+	$('img[src="../img/css.jpg"]').hover(function(){
+		$(this).attr('src', '../img/css_on.jpg');
+	}, function(){
+		$(this).attr('src', '../img/css.jpg');
+	});
+	
+	$('img[alt="HTML"]').hover(function(){
+		$(this).attr('src', '../img/html_on.jpg');
+	}, function(){
+		$(this).attr('src', '../img/html.jpg');
+	});
+});
+</script>
+</body>
+</html>

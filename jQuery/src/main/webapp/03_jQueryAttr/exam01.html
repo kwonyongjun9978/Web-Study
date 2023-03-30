@@ -17,7 +17,8 @@ $(function(){
 	console.log();
 	
 	var check = $('#check');
-	console.log('check = ' + check.tagName);
+	console.log('check = ' + check); //[object Object]
+	console.log('check = ' + check.prop('tagName')); //INPUT
 	console.log('attr = ' + check.attr('checked')); //checked
 	console.log('prop = ' + check.prop('checked')); //true
 	
