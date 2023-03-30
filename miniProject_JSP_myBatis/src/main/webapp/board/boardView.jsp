@@ -32,7 +32,7 @@ div{
 	<img src="../image/12.gif" width="70" height="70" alt="별가" 
 	onclick="location.href='../index.jsp'" style="cursor: pointer;"> 작성한 글확인
 </h3>
-<table  width="450" border="2" cellpadding="5" cellspacing="0" frame="hsides" rules="rows">
+<table width="450" border="2" cellpadding="5" cellspacing="0" frame="hsides" rules="rows">
  <tr>
   <td colspan="3">
    <h2><%=boardDTO.getSubject() %></h2>
