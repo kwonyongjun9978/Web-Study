@@ -17,22 +17,61 @@ $(document).ready(function(){
 				$('<tr/>').append($('<td/>',{
 					align: 'center',
 					text: items.seq
+					
 				})).append($('<td/>',{
-					text:items.subject
-				})).append($('<td/>',{
+					
+					}).append($('<a/>',{
+						href: '#',
+						class: 'subjectA',
+						text: items.subject
+						}))
+						
+				).append($('<td/>',{
 					align: 'center',
-					text: items.name
-				})).append($('<td/>',{
-					align: 'center',
-					text: items.logtime
+					text: items.id
 				})).append($('<td/>',{
 					align: 'center',
 					text: items.hit
+				})).append($('<td/>',{
+					align: 'center',
+					text: items.logtime
 				})).appendTo($('#boardListTable'))
 			});
+			
+			//페이징 처리
+			$('#boardPagingDiv').html(data.pagingHTML);
+			
+			//로그인 여부
+			$('.subjectA').click(function(){
+				if($('#memId').val() == '')
+					alert('먼저 로그인하세요');
+				else{
+					var seq = $(this).parent().prev().text();
+					
+					//console.log(seq.prop('tagName'))
+					console.log(seq)
+					var pg = $('#pg').val();
+					location.href = '/miniProject_jQuery/board/boardView.do?seq='+seq+'&pg='+pg;
+					}
+			});
+			
 		},
 		error: function(err){
-			console.log(err);
+			console.log(seq.prop('tagName'));
 		}		   		 
 	});
 });
+
+/*
+<table>
+	<tr>
+		<td align="center">items.seq</td>
+		<td>
+			<a href="#" class="subjectA">items.subject</a>
+		</td>
+		<td align="center">items.id</td>
+		<td align="center">items.logtime</td>
+		<td align="center">items.hit</td>
+	</tr>
+</table>
+*/
