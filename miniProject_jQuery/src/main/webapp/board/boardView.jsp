@@ -8,7 +8,7 @@
 <title>작성한 글 확인</title>
 </head>
 <body>
-<form id="boardViewForm">
+<form id="boardViewForm" >
 <input type="text" id="pg" name="pg" value="${requestScope.pg }">
 <input type="text" id="seq" name="seq" value="${seq }">
 <input type="text" id="memId" value="${memId }">

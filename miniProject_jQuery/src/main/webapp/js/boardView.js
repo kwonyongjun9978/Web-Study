@@ -28,6 +28,12 @@ $(document).ready(function(){
 
 //글수정 폼
 $('#boardUpdateFormBtn').click(function(){
-	$('boardViewForm').attr('action', '/miniProject/board/boardUpdateForm.do');
-	$('boardViewForm').submit(); //submit()은 name 속성만 가져간다.
+	$('#boardViewForm').attr('action', '/miniProject_jQuery/board/boardUpdateForm.do');
+	$('#boardViewForm').submit(); //submit()은 name 속성만 가져간다.(pg,seq)
+});
+
+//답글쓰기 폼
+$('#boardReplyFormBtn').click(function(){
+	$('#boardViewForm').attr('action', '/miniProject_jQuery/board/boardReplyForm.do');
+	$('#boardViewForm').submit(); //submit()은 name 속성만 가져간다.(pg,seq)
 });
