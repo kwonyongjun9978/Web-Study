@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<input type="button" value="추가" />
+<input type="button" value="삭제" />
+
+<!-- 동적 요소 -->
+<ul>
+
+</ul>
+
+<script type="text/javascript" src="../js/jquery-3.6.4.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	var i = 1;
+	
+	//추가 버튼
+	$('input[value="추가"]').click(function(){ //input:eq(0)
+		var li1 = $('<li>').css('color', 'red').html('추가항목' + (i++));
+		var li2 = $('<li>').css('color', 'green').html('추가항목' + (i++));
+		var li3 = $('<li>').css('color', 'blue').html('추가항목' + (i++));
+	
+		$(li1).click(function(){
+			$(this).remove();
+		});
+		$(li2).click(function(){
+			$(this).remove();
+		});
+		$(li3).click(function(){
+			$(this).remove();
+		});
+		
+		li1.appendTo($('ul'));
+		$('ul').append(li2);
+		//$('ul').append(li3);
+		li3.appendTo($('ul'));
+	});
+	
+	$('input:eq(1)').click(function(){	//삭제 버튼
+		$('ul').empty();
+	});
+});
+</script>
+</body>
+</html>
+
+<!-- 
+A.append(B)   -- A에 B를 추가하다.
+B.appendTo(A) -- B를 A에 추가하다.
+ -->
