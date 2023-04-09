@@ -28,6 +28,7 @@ public class GetBoardService implements CommandProcess {
 		//BoardDTO -> JSON
 		JSONObject json = new JSONObject();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
+		
 		json.put("seq", boardDTO.getSeq());
 		json.put("id", boardDTO.getId());
 		json.put("name", boardDTO.getName());
@@ -40,7 +41,7 @@ public class GetBoardService implements CommandProcess {
 		json.put("pseq", boardDTO.getPseq());
 		json.put("reply", boardDTO.getReply());
 		json.put("hit", boardDTO.getHit());
-		json.put("logtime", sdf.format(boardDTO.getLogtime()));
+		json.put("logtime", sdf.format(boardDTO.getLogtime())); //Data 타입을 -> String타입으로 변환시켜야한다.
 
 		//세션
 		HttpSession session = request.getSession();

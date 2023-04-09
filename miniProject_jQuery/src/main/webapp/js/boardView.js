@@ -26,14 +26,22 @@ $(document).ready(function(){
 	});
 });
 
-//글수정 폼
+//글수정 form
 $('#boardUpdateFormBtn').click(function(){
 	$('#boardViewForm').attr('action', '/miniProject_jQuery/board/boardUpdateForm.do');
-	$('#boardViewForm').submit(); //submit()은 name 속성만 가져간다.(pg,seq)
+	$('#boardViewForm').submit();
+	
+});
+
+//글삭제 - 1페이지로 보여준다.
+$('#boardDeleteBtn').click(function(){
+	$('#boardViewForm').attr('action', '/miniProject_jQuery/board/boardDeleteForm.do');
+	$('#boardViewForm').submit(); // seq, pg
 });
 
 //답글쓰기 폼
 $('#boardReplyFormBtn').click(function(){
 	$('#boardViewForm').attr('action', '/miniProject_jQuery/board/boardReplyForm.do');
-	$('#boardViewForm').submit(); //submit()은 name 속성만 가져간다.(pg,seq)
+	$('#boardViewForm').submit(); //seq, pg
+	
 });

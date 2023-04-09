@@ -55,10 +55,12 @@
 
 	<!-- 동적처리 -->
 </table>
+
 <div id="boardPagingDiv" style="margin-top: 15px; width: 850px; text-align: center;"></div>
+
 <script type="text/javascript">
 function boardPaging(pg){
-	location.href = "boardList.do?pg=" +pg;
+	location.href = "/miniProject_jQuery/board/boardList.do?pg=" + pg;
 }
 </script>
 <script src="http://code.jquery.com/jquery-3.6.4.min.js"></script>

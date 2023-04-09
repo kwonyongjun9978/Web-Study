@@ -12,8 +12,6 @@
 <input type="text" id="pg" name="pg" value="${requestScope.pg }">
 <input type="text" id="seq" name="seq" value="${seq }">
 <input type="text" id="memId" value="${memId }">
-<img src="../img/12.gif" width="70" height="70" alt="별가" 
-onclick="location.href='../index.jsp'" style="cursor: pointer; border-radius: 50%;"> 
 <table width="450" border="2" cellpadding="5" cellspacing="0" frame="hsides" rules="rows">
 <tr>
   <td colspan="3" >
@@ -48,6 +46,6 @@ onclick="location.href='/miniProject_jQuery/board/boardList.do?pg=${pg }'">
 </form>
 
 <script src="http://code.jquery.com/jquery-3.6.4.min.js"></script>
-<script src="../js/boardView.js"></script>
+<script src="/miniProject_jQuery/js/boardView.js"></script>
 </body>
 </html>

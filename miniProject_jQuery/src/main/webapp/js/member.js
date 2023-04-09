@@ -3,39 +3,6 @@ function select(){
 	document.getElementById("email2").value = document.getElementById("email3").value
 }
 
-$('#boardWriteBtn').click(function(){
-	$('#subjectDiv').empty();
-	$('#contentDiv').empty();
-	
-	if($('#subject').val() == ''){
-		$('#subjectDiv').text('제목을 입력하세요');
-		$('#subjectDiv').focus();
-	}else if($('#content').val() == ''){
-		$('#contentDiv').text('내용을 입력하세요');
-		$('#contentDiv').focus();
-	}else{
-		$.ajax({
-			type: 'post',
-			url: '/miniProject_jQuery/board/boardWrite.do',
-			data: $('#boardWriteForm').serialize(),
-			dataType: 'text',
-         	success: function(data){
-            	data = data.trim();
-	            if(data == "write"){
-	               alert('글작성 완료!!');
-	               location.href='/miniProject_jQuery/board/boardList.do?pg=1';
-	            }
-	            else {
-	               alert('글 작성 실패ㅠㅠ');
-	            }
-	         },
-	         error: function(err){
-	            console.log(err);
-         	 }
-		});
-	}
-});
-
 $('#writeBtn').click(function(){
    $('#nameDiv').empty();
    $('#idDiv').empty();

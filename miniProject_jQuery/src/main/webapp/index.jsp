@@ -54,6 +54,9 @@ html {
    width: 1100px;
    height: 10%;
 }
+#footer a{
+   float: right;
+}
 </style>
 </head>
 <body>
@@ -88,7 +91,9 @@ html {
 	</div>
 	<hr/>	
 	<div id="footer">
-		<h4>용준캠프</h4>
+		<a href="https://github.com/kwonyongjun9978"><img src="/miniProject_jQuery/img/git.png" alt="GitImage" style="width: 100px; height: 80px;"></a>
+		<h4>현피오시는길</h4>
+		전북 익산시 평동로 23길 16 오투그란데아파트 101동 2706호
 	</div>
 </div>
 </body>
